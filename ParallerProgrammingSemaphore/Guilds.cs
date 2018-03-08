@@ -9,10 +9,12 @@ namespace ParallerProgrammingSemaphore
     public class Guilds
     {
         public Alchemist[] guild;
+        public int numberOfAlchemistsInGuild;
 
         public Guilds()
         {
-            guild = new Alchemist[3]; 
+            guild = new Alchemist[3];
+            numberOfAlchemistsInGuild = 0;
         }
     }
 
@@ -22,7 +24,8 @@ namespace ParallerProgrammingSemaphore
 
         public GuildA()
         {
-            guild = new AlchemistA[3] { new AlchemistA(), new AlchemistA(), new AlchemistA() };
+            guild = new AlchemistA[3];
+            numberOfAlchemistsInGuild = 0;
         }
     }
 
@@ -33,6 +36,7 @@ namespace ParallerProgrammingSemaphore
         public GuildB()
         {
             guild = new AlchemistB[3];
+            numberOfAlchemistsInGuild = 0;
         }
     }
 
@@ -43,6 +47,7 @@ namespace ParallerProgrammingSemaphore
         public GuildC()
         {
             guild = new AlchemistC[3];
+            numberOfAlchemistsInGuild = 0;
         }
     }
 
@@ -53,6 +58,7 @@ namespace ParallerProgrammingSemaphore
         public GuildD()
         {
             guild = new AlchemistD[3];
+            numberOfAlchemistsInGuild = 0;
         }
     }
 }

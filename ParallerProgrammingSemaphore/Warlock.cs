@@ -31,12 +31,12 @@ namespace ParallerProgrammingSemaphore
                 fac = getRandomFactory();
 
                 int time = getRandomTimeInterval();
-                Console.WriteLine("Warlock " + Program.getWarlockThreadName(Thread.CurrentThread) + " sleeps for " + time + " sec");
+                //Console.WriteLine("Warlock " + Program.getWarlockThreadName(Thread.CurrentThread) + " sleeps for " + time + " sec");
                 Thread.Sleep(time);
 
                 fac.curseBinarySemaphore.WaitOne();
 
-                Console.WriteLine("----" + fac.factoryName + " cursed by Warlock" + Program.getWarlockThreadName(Thread.CurrentThread));
+                //Console.WriteLine("----" + fac.factoryName + " cursed by Warlock" + Program.getWarlockThreadName(Thread.CurrentThread));
                 fac.curses++;
 
                 fac.curseBinarySemaphore.Release();

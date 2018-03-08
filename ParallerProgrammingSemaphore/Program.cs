@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,63 @@ public class Program
         public static FactoryLead leadFactory = new FactoryLead();
         public static FactoryMercury mercuryFactory = new FactoryMercury();
         public static FactorySulfur sulfurFactory = new FactorySulfur();
+        public static Thread[] alchemistsA;
+        public static Thread[] alchemistsB;
+        public static Thread[] alchemistsC;
+        public static Thread[] alchemistsD;
+        public static Thread lfacThread;
+        public static Thread mfacThread;
+        public static Thread sfacThread;
+        public static GuildA guildA = new GuildA();
+        public static GuildB guildB = new GuildB();
+        public static GuildC guildC = new GuildC();
+        public static GuildD guildD = new GuildD();
 
         static void Main(string[] args)
         {
+            
+            alchemistsA = new Thread[23];
+            alchemistsB = new Thread[2];
+            alchemistsC = new Thread[2];
+            alchemistsD = new Thread[2];   
+
+            for (int i = 0; i < 2; i++)
+            {
+                AlchemistA a = new AlchemistA();
+                guildA.guild[i] = a;
+                guildA.numberOfAlchemistsInGuild++;
+                alchemistsA[i] = new Thread(a.collectIngredients);
+                alchemistsA[i].Start();
+
+                AlchemistB b = new AlchemistB();
+                guildB.guild[i] = b;
+                guildB.numberOfAlchemistsInGuild++;
+                alchemistsB[i] = new Thread(b.collectIngredients);
+                alchemistsB[i].Start();
+
+                AlchemistC c = new AlchemistC();
+                guildC.guild[i] = c;
+                guildC.numberOfAlchemistsInGuild++;
+                alchemistsC[i] = new Thread(c.collectIngredients);
+                alchemistsC[i].Start();
+
+                AlchemistD d = new AlchemistD();
+                guildD.guild[i] = d;
+                guildD.numberOfAlchemistsInGuild++;
+                alchemistsD[i] = new Thread(d.collectIngredients);
+                alchemistsD[i].Start();
+            }
+
+            lfacThread = new Thread(leadFactory.produce);
+            lfacThread.Start();
+            mfacThread = new Thread(mercuryFactory.produce);
+            mfacThread.Start();
+            sfacThread = new Thread(sulfurFactory.produce);
+            sfacThread.Start();
+
             warlocks = new Thread[3];
             sorcerers = new Thread[3];
+
 
             for (int i = 0; i < 3; i++)
             {
@@ -38,6 +91,7 @@ public class Program
                 sorcerers[i].Name = "sorcerer_" + i;
                 sorcerers[i].Start();
             }
+
 
             Console.ReadKey();
         }
