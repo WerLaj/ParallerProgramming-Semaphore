@@ -59,16 +59,17 @@ namespace ParallerProgrammingSemaphore
                 storageAccessSemaphore.WaitOne();
                 if (storage[0] == 0)
                 {
-                    Console.WriteLine(factoryName + " produced first product");
+                    
                     storage[0] = 1;
+                    Console.WriteLine(factoryName + "[" + storage[0] + "," + storage[1] + "]");
                     numberOfIngredients = 1;
                     releaseAlchemistSemaphore();
-
                 }
                 else if (storage[0] == 1 && storage[1] == 0)
                 {
-                    Console.WriteLine(factoryName + " produced second product");
+                    
                     storage[1] = 1;
+                    Console.WriteLine(factoryName + "[" + storage[0] + "," + storage[1] + "]");
                     numberOfIngredients = 2;
                     releaseAlchemistSemaphore();
                 }
@@ -83,13 +84,38 @@ namespace ParallerProgrammingSemaphore
 
         public void releaseAlchemistSemaphore()
         {
-            AlchemistA a = Program.guildA.guild[Program.guildA.numberOfAlchemistsInGuild-1];
-            AlchemistB b = Program.guildB.guild[Program.guildB.numberOfAlchemistsInGuild-1];
-            AlchemistD d = Program.guildD.guild[Program.guildD.numberOfAlchemistsInGuild-1];
+            if (Program.guildA.numberOfAlchemistsInGuild - 1 >= 0)
+            {
+                AlchemistA a = Program.guildA.guild[Program.guildA.numberOfAlchemistsInGuild - 1];
+                if (a.mercury == false)
+                {
+                    Console.WriteLine("AlchemistA " + Program.guildA.numberOfAlchemistsInGuild + " semaphore released");
+                    a.neededIngredientsSemaphore.Release();
+                    a.mercury = true;
+                }
+            }
+            if (Program.guildB.numberOfAlchemistsInGuild - 1 >= 0)
+            {
+                AlchemistB b = Program.guildB.guild[Program.guildB.numberOfAlchemistsInGuild - 1];
+                if (b.mercury == false)
+                {
+                    Console.WriteLine("AlchemistB " + Program.guildB.numberOfAlchemistsInGuild + " semaphore released");
+                    b.neededIngredientsSemaphore.Release();
+                    b.mercury = true;
+                }
+            }
 
-            a.neededIngredientsSemaphore.Release();
-            b.neededIngredientsSemaphore.Release();
-            d.neededIngredientsSemaphore.Release();
+            if (Program.guildD.numberOfAlchemistsInGuild - 1 >= 0)
+            {
+                AlchemistD d = Program.guildD.guild[Program.guildD.numberOfAlchemistsInGuild - 1];
+                if (d.mercury == false)
+                {
+                    Console.WriteLine("AlchemistD " + Program.guildD.numberOfAlchemistsInGuild + " semaphore released ");
+                    d.neededIngredientsSemaphore.Release();
+                    d.mercury = true;
+                }
+            }
+            
         }
     }
 
@@ -112,16 +138,18 @@ namespace ParallerProgrammingSemaphore
                 storageAccessSemaphore.WaitOne();
                 if (storage[0] == 0)
                 {
-                    Console.WriteLine(factoryName + " produced first product");
+                    
                     storage[0] = 1;
+                    Console.WriteLine(factoryName + "[" + storage[0] + "," + storage[1] + "]");
                     numberOfIngredients = 1;
                     releaseAlchemistSemaphore();
 
                 }
                 else if (storage[0] == 1 && storage[1] == 0)
                 {
-                    Console.WriteLine(factoryName + " produced second product");
+                    
                     storage[1] = 1;
+                    Console.WriteLine(factoryName + "[" + storage[0] + "," + storage[1] + "]");
                     numberOfIngredients = 2;
                     releaseAlchemistSemaphore();
                 }
@@ -136,13 +164,36 @@ namespace ParallerProgrammingSemaphore
 
         public void releaseAlchemistSemaphore()
         {
-            AlchemistA a = Program.guildA.guild[Program.guildA.numberOfAlchemistsInGuild-1];
-            AlchemistC c = Program.guildC.guild[Program.guildC.numberOfAlchemistsInGuild-1];
-            AlchemistD d = Program.guildD.guild[Program.guildD.numberOfAlchemistsInGuild-1];
-
-            a.neededIngredientsSemaphore.Release();
-            c.neededIngredientsSemaphore.Release();
-            d.neededIngredientsSemaphore.Release();
+            if (Program.guildA.numberOfAlchemistsInGuild - 1 >= 0)
+            {
+                AlchemistA a = Program.guildA.guild[Program.guildA.numberOfAlchemistsInGuild - 1];
+                if (a.lead == false)
+                {
+                    Console.WriteLine("AlchemistA " + Program.guildA.numberOfAlchemistsInGuild + " semaphore released ");
+                    a.neededIngredientsSemaphore.Release();
+                    a.lead = true;
+                }
+            }
+            if (Program.guildC.numberOfAlchemistsInGuild - 1 >= 0)
+            {
+                AlchemistC c = Program.guildC.guild[Program.guildC.numberOfAlchemistsInGuild - 1];
+                if (c.lead == false)
+                {
+                    Console.WriteLine("AlchemistC " + Program.guildC.numberOfAlchemistsInGuild + " semaphore released");
+                    c.neededIngredientsSemaphore.Release();
+                    c.lead = true;
+                }
+            }
+            if (Program.guildD.numberOfAlchemistsInGuild - 1 >= 0)
+            {
+                AlchemistD d = Program.guildD.guild[Program.guildD.numberOfAlchemistsInGuild - 1];
+                if (d.lead == false)
+                {
+                    Console.WriteLine("AlchemistD " + Program.guildD.numberOfAlchemistsInGuild + " semaphore released ");
+                    d.neededIngredientsSemaphore.Release();
+                    d.lead = true;
+                }
+            } 
         }
     }
 
@@ -165,16 +216,18 @@ namespace ParallerProgrammingSemaphore
                 storageAccessSemaphore.WaitOne();
                 if (storage[0] == 0)
                 {
-                    Console.WriteLine(factoryName + " produced first product");
+                    
                     storage[0] = 1;
+                    Console.WriteLine(factoryName + "[" + storage[0] + "," + storage[1] + "]");
                     numberOfIngredients = 1;
                     releaseAlchemistSemaphore();
 
                 }
                 else if (storage[0] == 1 && storage[1] == 0)
                 {
-                    Console.WriteLine(factoryName + " produced second product");
+                    
                     storage[1] = 1;
+                    Console.WriteLine(factoryName + "[" + storage[0] + "," + storage[1] + "]");
                     numberOfIngredients = 2;
                     releaseAlchemistSemaphore();
                 }
@@ -189,13 +242,38 @@ namespace ParallerProgrammingSemaphore
 
         public void releaseAlchemistSemaphore()
         {
-            AlchemistC c = Program.guildC.guild[Program.guildC.numberOfAlchemistsInGuild-1];
-            AlchemistB b = Program.guildB.guild[Program.guildB.numberOfAlchemistsInGuild-1];
-            AlchemistD d = Program.guildD.guild[Program.guildD.numberOfAlchemistsInGuild-1];
+            if (Program.guildC.numberOfAlchemistsInGuild - 1 >= 0)
+            {
+                AlchemistC c = Program.guildC.guild[Program.guildC.numberOfAlchemistsInGuild - 1];
+                if (c.sulfur == false)
+                {
+                    Console.WriteLine("AlchemistC " + Program.guildC.numberOfAlchemistsInGuild + " semaphore released ");
+                    c.neededIngredientsSemaphore.Release();
+                    c.sulfur = true;
+                }
+            }
 
-            c.neededIngredientsSemaphore.Release();
-            b.neededIngredientsSemaphore.Release();
-            d.neededIngredientsSemaphore.Release();
+            if (Program.guildB.numberOfAlchemistsInGuild - 1 >= 0)
+            {
+                AlchemistB b = Program.guildB.guild[Program.guildB.numberOfAlchemistsInGuild - 1];
+                if (b.sulfur == false)
+                {
+                    Console.WriteLine("AlchemistB " + Program.guildB.numberOfAlchemistsInGuild + " semaphore released ");
+                    b.neededIngredientsSemaphore.Release();
+                    b.sulfur = true;
+                }
+            }
+
+            if (Program.guildD.numberOfAlchemistsInGuild - 1 >= 0)
+            {
+                AlchemistD d = Program.guildD.guild[Program.guildD.numberOfAlchemistsInGuild - 1];
+                if (d.sulfur == false)
+                {
+                    Console.WriteLine("AlchemistD " + Program.guildD.numberOfAlchemistsInGuild + " semaphore released ");
+                    d.neededIngredientsSemaphore.Release();
+                    d.sulfur = true;
+                }
+            } 
         }
     }
 }
