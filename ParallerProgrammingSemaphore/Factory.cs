@@ -10,23 +10,26 @@ namespace ParallerProgrammingSemaphore
 {
     public class Factory
     {
+        public int n;
         public int curses;
         public int[] storage;
         public int numberOfIngredients;
         public string factoryName;
         public string product;
         public Semaphore curseBinarySemaphore;
+        public Semaphore cursesSemaphore;
         public Semaphore storageAccessSemaphore;
 
         public Factory()
         {
+            n = 1;
             curses = 0;
             storage = new[] { 0, 0 };
             numberOfIngredients = 0;
             factoryName = "";
             product = "";
             curseBinarySemaphore = new Semaphore(1, 1);
-            //cursesSemaphore = new Semaphore(0, 5);
+            cursesSemaphore = new Semaphore(1, 1);
             storageAccessSemaphore = new Semaphore(1, 1);
         }
 
@@ -53,10 +56,12 @@ namespace ParallerProgrammingSemaphore
             int i = 0;
             do
             {
+                cursesSemaphore.WaitOne(); 
                 int time = getRandomTimeInterval();
-                Thread.Sleep(time);
+                Thread.Sleep(time); //kosztowna operacja w semaforze
 
                 storageAccessSemaphore.WaitOne();
+                n--;
                 if (storage[0] == 0)
                 {
                     
@@ -75,11 +80,14 @@ namespace ParallerProgrammingSemaphore
                 }
                 else
                 {
+                    ///!!!!!!!!!!!!!!!!!!!!!!!!
                     Console.WriteLine(factoryName + " can't produce because storage is full");
                 }
                 storageAccessSemaphore.Release();
                 i++;
-            } while (i < 5);
+                cursesSemaphore.Release();
+                n++;
+            } while (i < 15);
         }
 
         public void releaseAlchemistSemaphore()
@@ -89,7 +97,7 @@ namespace ParallerProgrammingSemaphore
                 AlchemistA a = Program.guildA.guild[Program.guildA.numberOfAlchemistsInGuild - 1];
                 if (a.mercury == false)
                 {
-                    Console.WriteLine("AlchemistA " + Program.guildA.numberOfAlchemistsInGuild + " semaphore released");
+                    //Console.WriteLine("AlchemistA " + Program.guildA.numberOfAlchemistsInGuild + " semaphore released");
                     a.neededIngredientsSemaphore.Release();
                     a.mercury = true;
                 }
@@ -99,7 +107,7 @@ namespace ParallerProgrammingSemaphore
                 AlchemistB b = Program.guildB.guild[Program.guildB.numberOfAlchemistsInGuild - 1];
                 if (b.mercury == false)
                 {
-                    Console.WriteLine("AlchemistB " + Program.guildB.numberOfAlchemistsInGuild + " semaphore released");
+                    //Console.WriteLine("AlchemistB " + Program.guildB.numberOfAlchemistsInGuild + " semaphore released");
                     b.neededIngredientsSemaphore.Release();
                     b.mercury = true;
                 }
@@ -110,7 +118,7 @@ namespace ParallerProgrammingSemaphore
                 AlchemistD d = Program.guildD.guild[Program.guildD.numberOfAlchemistsInGuild - 1];
                 if (d.mercury == false)
                 {
-                    Console.WriteLine("AlchemistD " + Program.guildD.numberOfAlchemistsInGuild + " semaphore released ");
+                    //Console.WriteLine("AlchemistD " + Program.guildD.numberOfAlchemistsInGuild + " semaphore released ");
                     d.neededIngredientsSemaphore.Release();
                     d.mercury = true;
                 }
@@ -132,6 +140,7 @@ namespace ParallerProgrammingSemaphore
             int i = 0;
             do
             {
+                cursesSemaphore.WaitOne();
                 int time = getRandomTimeInterval();
                 Thread.Sleep(time);
 
@@ -159,6 +168,7 @@ namespace ParallerProgrammingSemaphore
                 }
                 storageAccessSemaphore.Release();
                 i++;
+                cursesSemaphore.Release();
             } while (i < 5);
         }
 
@@ -169,7 +179,7 @@ namespace ParallerProgrammingSemaphore
                 AlchemistA a = Program.guildA.guild[Program.guildA.numberOfAlchemistsInGuild - 1];
                 if (a.lead == false)
                 {
-                    Console.WriteLine("AlchemistA " + Program.guildA.numberOfAlchemistsInGuild + " semaphore released ");
+                    //Console.WriteLine("AlchemistA " + Program.guildA.numberOfAlchemistsInGuild + " semaphore released ");
                     a.neededIngredientsSemaphore.Release();
                     a.lead = true;
                 }
@@ -179,7 +189,7 @@ namespace ParallerProgrammingSemaphore
                 AlchemistC c = Program.guildC.guild[Program.guildC.numberOfAlchemistsInGuild - 1];
                 if (c.lead == false)
                 {
-                    Console.WriteLine("AlchemistC " + Program.guildC.numberOfAlchemistsInGuild + " semaphore released");
+                    //Console.WriteLine("AlchemistC " + Program.guildC.numberOfAlchemistsInGuild + " semaphore released");
                     c.neededIngredientsSemaphore.Release();
                     c.lead = true;
                 }
@@ -189,7 +199,7 @@ namespace ParallerProgrammingSemaphore
                 AlchemistD d = Program.guildD.guild[Program.guildD.numberOfAlchemistsInGuild - 1];
                 if (d.lead == false)
                 {
-                    Console.WriteLine("AlchemistD " + Program.guildD.numberOfAlchemistsInGuild + " semaphore released ");
+                    //Console.WriteLine("AlchemistD " + Program.guildD.numberOfAlchemistsInGuild + " semaphore released ");
                     d.neededIngredientsSemaphore.Release();
                     d.lead = true;
                 }
@@ -210,6 +220,7 @@ namespace ParallerProgrammingSemaphore
             int i = 0;
             do
             {
+                cursesSemaphore.WaitOne();
                 int time = getRandomTimeInterval();
                 Thread.Sleep(time);
 
@@ -237,6 +248,7 @@ namespace ParallerProgrammingSemaphore
                 }
                 storageAccessSemaphore.Release();
                 i++;
+                cursesSemaphore.Release();
             } while (i < 5);
         }
 
@@ -247,7 +259,7 @@ namespace ParallerProgrammingSemaphore
                 AlchemistC c = Program.guildC.guild[Program.guildC.numberOfAlchemistsInGuild - 1];
                 if (c.sulfur == false)
                 {
-                    Console.WriteLine("AlchemistC " + Program.guildC.numberOfAlchemistsInGuild + " semaphore released ");
+                    //Console.WriteLine("AlchemistC " + Program.guildC.numberOfAlchemistsInGuild + " semaphore released ");
                     c.neededIngredientsSemaphore.Release();
                     c.sulfur = true;
                 }
@@ -258,7 +270,7 @@ namespace ParallerProgrammingSemaphore
                 AlchemistB b = Program.guildB.guild[Program.guildB.numberOfAlchemistsInGuild - 1];
                 if (b.sulfur == false)
                 {
-                    Console.WriteLine("AlchemistB " + Program.guildB.numberOfAlchemistsInGuild + " semaphore released ");
+                    //Console.WriteLine("AlchemistB " + Program.guildB.numberOfAlchemistsInGuild + " semaphore released ");
                     b.neededIngredientsSemaphore.Release();
                     b.sulfur = true;
                 }
@@ -269,7 +281,7 @@ namespace ParallerProgrammingSemaphore
                 AlchemistD d = Program.guildD.guild[Program.guildD.numberOfAlchemistsInGuild - 1];
                 if (d.sulfur == false)
                 {
-                    Console.WriteLine("AlchemistD " + Program.guildD.numberOfAlchemistsInGuild + " semaphore released ");
+                    //Console.WriteLine("AlchemistD " + Program.guildD.numberOfAlchemistsInGuild + " semaphore released ");
                     d.neededIngredientsSemaphore.Release();
                     d.sulfur = true;
                 }

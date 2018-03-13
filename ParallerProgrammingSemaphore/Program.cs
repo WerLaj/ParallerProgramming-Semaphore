@@ -25,45 +25,50 @@ public class Program
         public static Thread lfacThread;
         public static Thread mfacThread;
         public static Thread sfacThread;
-        public static GuildA guildA = new GuildA();
-        public static GuildB guildB = new GuildB();
-        public static GuildC guildC = new GuildC();
-        public static GuildD guildD = new GuildD();
+        public static GuildA guildA;
+        public static GuildB guildB;
+        public static GuildC guildC;
+        public static GuildD guildD;
 
         static void Main(string[] args)
         {
             
-            alchemistsA = new Thread[23];
+            alchemistsA = new Thread[3];
             alchemistsB = new Thread[2];
-            alchemistsC = new Thread[2];
-            alchemistsD = new Thread[2];   
+            alchemistsC = new Thread[4];
+            alchemistsD = new Thread[2];
 
-            for (int i = 0; i < 2; i++)
-            {
-                AlchemistA a = new AlchemistA();
-                guildA.guild[i] = a;
-                guildA.numberOfAlchemistsInGuild++;
-                alchemistsA[i] = new Thread(a.collectIngredients);
-                alchemistsA[i].Start();
+            guildA = new GuildA(3, alchemistsA);
+            guildB = new GuildB(2, alchemistsB);
+            guildC = new GuildC(4, alchemistsC);
+            guildD = new GuildD(2, alchemistsD);
 
-                AlchemistB b = new AlchemistB();
-                guildB.guild[i] = b;
-                guildB.numberOfAlchemistsInGuild++;
-                alchemistsB[i] = new Thread(b.collectIngredients);
-                alchemistsB[i].Start();
+            //for (int i = 0; i < 2; i++)
+            //{
+            //    AlchemistA a = new AlchemistA();
+            //    guildA.guild[i] = a;
+            //    guildA.numberOfAlchemistsInGuild++;
+            //    alchemistsA[i] = new Thread(a.collectIngredients);
+            //    alchemistsA[i].Start();
 
-                AlchemistC c = new AlchemistC();
-                guildC.guild[i] = c;
-                guildC.numberOfAlchemistsInGuild++;
-                alchemistsC[i] = new Thread(c.collectIngredients);
-                alchemistsC[i].Start();
+            //    AlchemistB b = new AlchemistB();
+            //    guildB.guild[i] = b;
+            //    guildB.numberOfAlchemistsInGuild++;
+            //    alchemistsB[i] = new Thread(b.collectIngredients);
+            //    alchemistsB[i].Start();
 
-                AlchemistD d = new AlchemistD();
-                guildD.guild[i] = d;
-                guildD.numberOfAlchemistsInGuild++;
-                alchemistsD[i] = new Thread(d.collectIngredients);
-                alchemistsD[i].Start();
-            }
+            //    AlchemistC c = new AlchemistC();
+            //    guildC.guild[i] = c;
+            //    guildC.numberOfAlchemistsInGuild++;
+            //    alchemistsC[i] = new Thread(c.collectIngredients);
+            //    alchemistsC[i].Start();
+
+            //    AlchemistD d = new AlchemistD();
+            //    guildD.guild[i] = d;
+            //    guildD.numberOfAlchemistsInGuild++;
+            //    alchemistsD[i] = new Thread(d.collectIngredients);
+            //    alchemistsD[i].Start();
+            //}
 
             lfacThread = new Thread(leadFactory.produce);
             lfacThread.Start();

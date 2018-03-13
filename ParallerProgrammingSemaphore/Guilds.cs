@@ -2,19 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ParallerProgrammingSemaphore
 {
     public class Guilds
     {
-        public Alchemist[] guild;
         public int numberOfAlchemistsInGuild;
 
         public Guilds()
         {
-            guild = new Alchemist[3];
             numberOfAlchemistsInGuild = 0;
+        }
+
+        public int getRandomTimeInterval()
+        {
+            int time = 0;
+            Random rnd = new Random();
+            time = rnd.Next(1000, 3000);
+
+            return time;
         }
     }
 
@@ -22,10 +30,21 @@ namespace ParallerProgrammingSemaphore
     {
         public AlchemistA[] guild;
 
-        public GuildA()
+        public GuildA(int n, Thread[] t)
         {
-            guild = new AlchemistA[3];
+            guild = new AlchemistA[n];
             numberOfAlchemistsInGuild = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                int r = getRandomTimeInterval();
+                //Thread.Sleep(r);
+                AlchemistA a = new AlchemistA();
+                guild[i] = a;
+                t[i] = new Thread(a.collectIngredients);
+                t[i].Start();
+                numberOfAlchemistsInGuild++;
+            }
         }
     }
 
@@ -33,10 +52,21 @@ namespace ParallerProgrammingSemaphore
     {
         public AlchemistB[] guild;
 
-        public GuildB()
+        public GuildB(int n, Thread[] t)
         {
-            guild = new AlchemistB[3];
+            guild = new AlchemistB[n];
             numberOfAlchemistsInGuild = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                int r = getRandomTimeInterval();
+                //Thread.Sleep(r);
+                AlchemistB a = new AlchemistB();
+                guild[i] = a;
+                t[i] = new Thread(a.collectIngredients);
+                t[i].Start();
+                numberOfAlchemistsInGuild++;
+            }
         }
     }
 
@@ -44,10 +74,21 @@ namespace ParallerProgrammingSemaphore
     {
         public AlchemistC[] guild;
 
-        public GuildC()
+        public GuildC(int n, Thread[] t)
         {
-            guild = new AlchemistC[3];
+            guild = new AlchemistC[n];
             numberOfAlchemistsInGuild = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                int r = getRandomTimeInterval();
+                //Thread.Sleep(r);
+                AlchemistC a = new AlchemistC();
+                guild[i] = a;
+                t[i] = new Thread(a.collectIngredients);
+                t[i].Start();
+                numberOfAlchemistsInGuild++;
+            }
         }
     }
 
@@ -55,10 +96,21 @@ namespace ParallerProgrammingSemaphore
     {
         public AlchemistD[] guild;
 
-        public GuildD()
+        public GuildD(int n, Thread[] t)
         {
-            guild = new AlchemistD[3];
+            guild = new AlchemistD[n];
             numberOfAlchemistsInGuild = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                int r = getRandomTimeInterval();
+                //Thread.Sleep(r);
+                AlchemistD a = new AlchemistD();
+                guild[i] = a;
+                t[i] = new Thread(a.collectIngredients);
+                t[i].Start();
+                numberOfAlchemistsInGuild++;
+            }
         }
     }
 }

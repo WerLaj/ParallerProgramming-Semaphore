@@ -29,7 +29,7 @@ namespace ParallerProgrammingSemaphore
             do
             {
                 int time = getRandomTimeInterval();
-                Console.WriteLine("---Sorcerer " + Program.getSorcererThreadName(Thread.CurrentThread) + " sleeps for " + time + " sec");
+                //Console.WriteLine("---Sorcerer " + Program.getSorcererThreadName(Thread.CurrentThread) + " sleeps for " + time + " sec");
                 Thread.Sleep(time);
 
                 removeCurseFromFactory(lfac);
@@ -39,14 +39,14 @@ namespace ParallerProgrammingSemaphore
                 removeCurseFromFactory(sfac);
 
                 i++;
-            } while (i < 5);
+            } while (i < 15);
         }
 
         public int getRandomTimeInterval()
         {
             int time = 0;
             Random rnd = new Random();
-            time = rnd.Next(1000, 5000);
+            time = rnd.Next(1000, 10000);
 
             return time;
         }
@@ -54,15 +54,19 @@ namespace ParallerProgrammingSemaphore
         public void removeCurseFromFactory(Factory f)
         {
             f.curseBinarySemaphore.WaitOne();
+
             if (f.curses > 0)
             {
-                Console.WriteLine("---Sorcerer " + Program.getSorcererThreadName(Thread.CurrentThread) + " removes curse from " + f.factoryName);
                 f.curses--;
+                Console.WriteLine("---Sorcerer " + Program.getSorcererThreadName(Thread.CurrentThread) + " removes curse from " + f.factoryName);
+                if (f.curses == 0)
+                {
+                    f.cursesSemaphore.Release();
+                    f.n++;
+                    Console.WriteLine("---Sorcerer " + Program.getSorcererThreadName(Thread.CurrentThread) + " unblocked factory " + f.factoryName);
+                }
             }
-            else if (f.curses == 0)
-            {
-                Console.WriteLine("---Sorcerer " + Program.getSorcererThreadName(Thread.CurrentThread) + " wants to remove curse from " + f.factoryName + " but it is not cursed");
-            }
+
             f.curseBinarySemaphore.Release();
         }
     }

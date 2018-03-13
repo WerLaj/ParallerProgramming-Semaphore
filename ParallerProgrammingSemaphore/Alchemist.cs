@@ -100,6 +100,10 @@ namespace ParallerProgrammingSemaphore
                     waitoneAlchemistSemaphore();
                     Program.guildA.numberOfAlchemistsInGuild--;
                 }
+                else
+                {
+                    Console.WriteLine("==================");
+                }
                 mfac.storageAccessSemaphore.Release();
                 lfac.storageAccessSemaphore.Release();
                 neededIngredientsSemaphore.Release();
@@ -117,7 +121,7 @@ namespace ParallerProgrammingSemaphore
                 AlchemistC c = Program.guildC.guild[Program.guildC.numberOfAlchemistsInGuild - 1];
                 if (c.lead == true)
                 {
-                    Console.WriteLine("Alchemists: C semaphore waited ");
+                    //Console.WriteLine("Alchemists: C semaphore waited ");
                     c.neededIngredientsSemaphore.WaitOne();
                     c.lead = false;
                 }
@@ -127,7 +131,7 @@ namespace ParallerProgrammingSemaphore
                 AlchemistB b = Program.guildB.guild[Program.guildB.numberOfAlchemistsInGuild - 1];
                 if (b.mercury == true)
                 {
-                    Console.WriteLine("Alchemists: B semaphore waited ");
+                    //Console.WriteLine("Alchemists: B semaphore waited ");
                     b.neededIngredientsSemaphore.WaitOne();
                     b.mercury = false;
                 }
@@ -137,13 +141,13 @@ namespace ParallerProgrammingSemaphore
                 AlchemistD d = Program.guildD.guild[Program.guildD.numberOfAlchemistsInGuild - 1];
                 if (d.lead == true)
                 {
-                    Console.WriteLine("Alchemists: D semaphore waited lead");
+                    //Console.WriteLine("Alchemists: D semaphore waited lead");
                     d.neededIngredientsSemaphore.WaitOne();
                     d.lead = false;
                 }
                 if (d.mercury == true)
                 {
-                    Console.WriteLine("Alchemists: D semaphore waited mercury");
+                    //Console.WriteLine("Alchemists: D semaphore waited mercury");
                     d.neededIngredientsSemaphore.WaitOne();
                     d.mercury = false;
                 }
@@ -174,7 +178,7 @@ namespace ParallerProgrammingSemaphore
                 neededIngredientsSemaphore.WaitOne();
                 sfac.storageAccessSemaphore.WaitOne();
                 mfac.storageAccessSemaphore.WaitOne();
-                Console.WriteLine("AlchemistB tries to collect ingredients");
+                //Console.WriteLine("AlchemistB tries to collect ingredients");
                 if (sfac.numberOfIngredients > 0 && mfac.numberOfIngredients > 0 && alchemistInLab == false)
                 {
                     Console.WriteLine("AlchemistB collected all ingredients");
@@ -206,7 +210,7 @@ namespace ParallerProgrammingSemaphore
                 AlchemistA a = Program.guildA.guild[Program.guildA.numberOfAlchemistsInGuild - 1];
                 if (a.mercury == true)
                 {
-                    Console.WriteLine("Alchemists: A semaphore waited ");
+                    //Console.WriteLine("Alchemists: A semaphore waited ");
                     a.neededIngredientsSemaphore.WaitOne();
                     a.mercury = false;
                 }
@@ -217,7 +221,7 @@ namespace ParallerProgrammingSemaphore
                 AlchemistC c = Program.guildC.guild[Program.guildC.numberOfAlchemistsInGuild - 1];
                 if (c.sulfur == true)
                 {
-                    Console.WriteLine("Alchemists: C semaphore waited ");
+                    //Console.WriteLine("Alchemists: C semaphore waited ");
                     c.neededIngredientsSemaphore.WaitOne();
                     c.sulfur = false;
                 }
@@ -227,13 +231,13 @@ namespace ParallerProgrammingSemaphore
                 AlchemistD d = Program.guildD.guild[Program.guildD.numberOfAlchemistsInGuild - 1];
                 if (d.mercury == true)
                 {
-                    Console.WriteLine("Alchemists: D semaphore waited mercury");
+                    //Console.WriteLine("Alchemists: D semaphore waited mercury");
                     d.neededIngredientsSemaphore.WaitOne();
                     d.mercury = false;
                 }
                 if (d.sulfur == true)
                 {
-                    Console.WriteLine("Alchemists: D semaphore waited sulfur");
+                    //Console.WriteLine("Alchemists: D semaphore waited sulfur");
                     d.neededIngredientsSemaphore.WaitOne();
                     d.sulfur = false;
                 }
@@ -265,7 +269,7 @@ namespace ParallerProgrammingSemaphore
                 neededIngredientsSemaphore.WaitOne();
                 sfac.storageAccessSemaphore.WaitOne();
                 lfac.storageAccessSemaphore.WaitOne();
-                Console.WriteLine("AlchemistC tries to collect ingredients");
+                //Console.WriteLine("AlchemistC tries to collect ingredients");
                 if (sfac.numberOfIngredients > 0 && lfac.numberOfIngredients > 0 && alchemistInLab == false)
                 {
                     Console.WriteLine("AlchemistC collected all ingredients");
@@ -297,7 +301,7 @@ namespace ParallerProgrammingSemaphore
                 AlchemistA a = Program.guildA.guild[Program.guildA.numberOfAlchemistsInGuild - 1];
                 if (a.lead == true)
                 {
-                    Console.WriteLine("Alchemists: A semaphore waited ");
+                    //Console.WriteLine("Alchemists: A semaphore waited ");
                     a.neededIngredientsSemaphore.WaitOne();
                     a.lead = false;
                 }
@@ -307,7 +311,7 @@ namespace ParallerProgrammingSemaphore
                 AlchemistB b = Program.guildB.guild[Program.guildB.numberOfAlchemistsInGuild - 1];
                 if (b.sulfur == true)
                 {
-                    Console.WriteLine("Alchemists: B semaphore waited ");
+                    //Console.WriteLine("Alchemists: B semaphore waited ");
                     b.neededIngredientsSemaphore.WaitOne();
                     b.sulfur = false;
                 }
@@ -317,13 +321,13 @@ namespace ParallerProgrammingSemaphore
                 AlchemistD d = Program.guildD.guild[Program.guildD.numberOfAlchemistsInGuild - 1];
                 if (d.lead == true)
                 {
-                    Console.WriteLine("Alchemists: D semaphore waited  lead");
+                    //Console.WriteLine("Alchemists: D semaphore waited  lead");
                     d.neededIngredientsSemaphore.WaitOne();
                     d.lead = false;
                 }
                 if(d.sulfur == true)
                 {
-                    Console.WriteLine("Alchemists: D semaphore waited sulfur");
+                    //Console.WriteLine("Alchemists: D semaphore waited sulfur");
                     d.neededIngredientsSemaphore.WaitOne();
                     d.sulfur = false;
                 }
@@ -357,7 +361,7 @@ namespace ParallerProgrammingSemaphore
                 sfac.storageAccessSemaphore.WaitOne();
                 lfac.storageAccessSemaphore.WaitOne();
                 mfac.storageAccessSemaphore.WaitOne();
-                Console.WriteLine("AlchemistD tries to collect ingredients");
+                //Console.WriteLine("AlchemistD tries to collect ingredients");
                 if (sfac.numberOfIngredients > 0 && lfac.numberOfIngredients > 0 && mfac.numberOfIngredients > 0 && alchemistInLab == false)
                 {
                     Console.WriteLine("AlchemistD collected all ingredients");
@@ -393,13 +397,13 @@ namespace ParallerProgrammingSemaphore
                 AlchemistA a = Program.guildA.guild[Program.guildA.numberOfAlchemistsInGuild - 1];
                 if(a.lead == true)
                 {
-                    Console.WriteLine("Alchemists: A semaphore waited lead ");
+                    //Console.WriteLine("Alchemists: A semaphore waited lead ");
                     a.neededIngredientsSemaphore.WaitOne();
                     a.lead = false;
                 }
                 if(a.mercury == true)
                 {
-                    Console.WriteLine("Alchemists: A semaphore waited mercury");
+                    //Console.WriteLine("Alchemists: A semaphore waited mercury");
                     a.neededIngredientsSemaphore.WaitOne();
                     a.mercury = false;
                 }                  
@@ -409,13 +413,13 @@ namespace ParallerProgrammingSemaphore
                 AlchemistB b = Program.guildB.guild[Program.guildB.numberOfAlchemistsInGuild - 1];
                 if(b.mercury == true)
                 {
-                    Console.WriteLine("Alchemists: B semaphore waited mercury");
+                    //Console.WriteLine("Alchemists: B semaphore waited mercury");
                     b.neededIngredientsSemaphore.WaitOne();
                     b.mercury = false;
                 }
                 if(b.sulfur == true)
                 {
-                    Console.WriteLine("Alchemists: B semaphore waited sulfur");
+                    //Console.WriteLine("Alchemists: B semaphore waited sulfur");
                     b.neededIngredientsSemaphore.WaitOne();
                     b.sulfur = false;
                 }
@@ -425,13 +429,13 @@ namespace ParallerProgrammingSemaphore
                 AlchemistC c = Program.guildC.guild[Program.guildC.numberOfAlchemistsInGuild - 1];
                 if(c.lead == true)
                 {
-                    Console.WriteLine("Alchemists: C semaphore waited lead");
+                    //Console.WriteLine("Alchemists: C semaphore waited lead");
                     c.neededIngredientsSemaphore.WaitOne();
                     c.lead = false;
                 }
                 if(c.sulfur == true)
                 {
-                    Console.WriteLine("Alchemists: C semaphore waited sulfur");
+                    //Console.WriteLine("Alchemists: C semaphore waited sulfur");
                     c.neededIngredientsSemaphore.WaitOne();
                     c.sulfur = false;
                 }                  

@@ -31,18 +31,23 @@ namespace ParallerProgrammingSemaphore
                 fac = getRandomFactory();
 
                 int time = getRandomTimeInterval();
-                Console.WriteLine("---Warlock " + Program.getWarlockThreadName(Thread.CurrentThread) + " sleeps for " + time + " sec");
+                //Console.WriteLine("---Warlock " + Program.getWarlockThreadName(Thread.CurrentThread) + " sleeps for " + time + " sec");
                 Thread.Sleep(time);
 
                 fac.curseBinarySemaphore.WaitOne();
 
-                Console.WriteLine("---" + fac.factoryName + " cursed by Warlock" + Program.getWarlockThreadName(Thread.CurrentThread));
+                if (fac.curses == 0)
+                {
+                    fac.cursesSemaphore.WaitOne();
+                    fac.n--;
+                }
                 fac.curses++;
+                Console.WriteLine("---" + fac.factoryName + " cursed by Warlock" + Program.getWarlockThreadName(Thread.CurrentThread));
 
                 fac.curseBinarySemaphore.Release();
 
                 i++;
-            } while (i < 5);
+            } while (i < 15);
         }
 
         public Factory getRandomFactory()
@@ -72,7 +77,7 @@ namespace ParallerProgrammingSemaphore
         {
             int time = 0;
             Random rnd = new Random();
-            time = rnd.Next(1000, 5000);
+            time = rnd.Next(5000, 15000);
 
             return time;
         }
