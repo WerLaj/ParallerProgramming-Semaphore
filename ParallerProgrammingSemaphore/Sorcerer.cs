@@ -24,9 +24,7 @@ namespace ParallerProgrammingSemaphore
 
         public void removeCurses()
         {
-            int i = 0;
-
-            do
+            while(true)
             {
                 int time = getRandomTimeInterval();
                 //Console.WriteLine("---Sorcerer " + Program.getSorcererThreadName(Thread.CurrentThread) + " sleeps for " + time + " sec");
@@ -38,15 +36,14 @@ namespace ParallerProgrammingSemaphore
 
                 removeCurseFromFactory(sfac);
 
-                i++;
-            } while (i < 15);
+            } 
         }
 
         public int getRandomTimeInterval()
         {
             int time = 0;
             Random rnd = new Random();
-            time = rnd.Next(1000, 10000);
+            time = rnd.Next(1000, 5000);
 
             return time;
         }

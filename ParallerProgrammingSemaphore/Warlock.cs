@@ -24,8 +24,7 @@ namespace ParallerProgrammingSemaphore
 
         public void curse()
         {
-            int i = 0;
-            do
+            while(true)
             {
                 Factory fac;
                 fac = getRandomFactory();
@@ -45,9 +44,7 @@ namespace ParallerProgrammingSemaphore
                 Console.WriteLine("---" + fac.factoryName + " cursed by Warlock" + Program.getWarlockThreadName(Thread.CurrentThread));
 
                 fac.curseBinarySemaphore.Release();
-
-                i++;
-            } while (i < 15);
+            }
         }
 
         public Factory getRandomFactory()

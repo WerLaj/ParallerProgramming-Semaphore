@@ -29,6 +29,10 @@ public class Program
         public static GuildB guildB;
         public static GuildC guildC;
         public static GuildD guildD;
+        public static Semaphore alchemistChoice = new Semaphore(1, 1);
+        //public static int lead = 0;
+        //public static int mercury = 0;
+        //public static int sulfur = 0;
 
         static void Main(string[] args)
         {
@@ -37,11 +41,16 @@ public class Program
             alchemistsB = new Thread[2];
             alchemistsC = new Thread[4];
             alchemistsD = new Thread[2];
-
+           
             guildA = new GuildA(3, alchemistsA);
             guildB = new GuildB(2, alchemistsB);
             guildC = new GuildC(4, alchemistsC);
             guildD = new GuildD(2, alchemistsD);
+
+            guildA.startAlchemists(3, alchemistsA);
+            guildB.startAlchemists(2, alchemistsB);
+            guildC.startAlchemists(4, alchemistsC);
+            guildD.startAlchemists(2, alchemistsD);
 
             //for (int i = 0; i < 2; i++)
             //{

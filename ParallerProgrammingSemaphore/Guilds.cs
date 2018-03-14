@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace ParallerProgrammingSemaphore
 {
     public class Guilds
     {
-        public int numberOfAlchemistsInGuild;
+        public int numberOfAlchemistsInGuild;   
 
         public Guilds()
         {
@@ -24,25 +25,34 @@ namespace ParallerProgrammingSemaphore
 
             return time;
         }
+
+        public void startAlchemists(int n, Thread[] t)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                //int r = getRandomTimeInterval();
+                //Thread.Sleep(r);
+                t[i].Start();
+            }
+        }
     }
 
     public class GuildA : Guilds
     {
-        public AlchemistA[] guild;
+        public Queue guild;
+        public Semaphore guildSemaphore;
 
-        public GuildA(int n, Thread[] t)
+        public GuildA(int n, Thread[] t) : base()
         {
-            guild = new AlchemistA[n];
-            numberOfAlchemistsInGuild = 0;
+            guild = new Queue();
+            guildSemaphore = new Semaphore(0, 1);
 
             for (int i = 0; i < n; i++)
-            {
-                int r = getRandomTimeInterval();
-                //Thread.Sleep(r);
+            {               
                 AlchemistA a = new AlchemistA();
-                guild[i] = a;
+                guild.Enqueue(a);
                 t[i] = new Thread(a.collectIngredients);
-                t[i].Start();
+                //t[i].Start();
                 numberOfAlchemistsInGuild++;
             }
         }
@@ -50,21 +60,20 @@ namespace ParallerProgrammingSemaphore
 
     public class GuildB : Guilds
     {
-        public AlchemistB[] guild;
+        public Queue guild;
+        public Semaphore guildSemaphore;
 
-        public GuildB(int n, Thread[] t)
+        public GuildB(int n, Thread[] t) : base()
         {
-            guild = new AlchemistB[n];
-            numberOfAlchemistsInGuild = 0;
+            guild = new Queue();
+            guildSemaphore = new Semaphore(0, 1);
 
             for (int i = 0; i < n; i++)
             {
-                int r = getRandomTimeInterval();
-                //Thread.Sleep(r);
                 AlchemistB a = new AlchemistB();
-                guild[i] = a;
+                guild.Enqueue(a);
                 t[i] = new Thread(a.collectIngredients);
-                t[i].Start();
+                //t[i].Start();
                 numberOfAlchemistsInGuild++;
             }
         }
@@ -72,21 +81,20 @@ namespace ParallerProgrammingSemaphore
 
     public class GuildC : Guilds
     {
-        public AlchemistC[] guild;
+        public Queue guild;
+        public Semaphore guildSemaphore;
 
-        public GuildC(int n, Thread[] t)
+        public GuildC(int n, Thread[] t) : base()
         {
-            guild = new AlchemistC[n];
-            numberOfAlchemistsInGuild = 0;
+            guild = new Queue();
+            guildSemaphore = new Semaphore(0, 1);
 
             for (int i = 0; i < n; i++)
             {
-                int r = getRandomTimeInterval();
-                //Thread.Sleep(r);
                 AlchemistC a = new AlchemistC();
-                guild[i] = a;
+                guild.Enqueue(a);
                 t[i] = new Thread(a.collectIngredients);
-                t[i].Start();
+                //t[i].Start();
                 numberOfAlchemistsInGuild++;
             }
         }
@@ -94,21 +102,20 @@ namespace ParallerProgrammingSemaphore
 
     public class GuildD : Guilds
     {
-        public AlchemistD[] guild;
+        public Queue guild;
+        public Semaphore guildSemaphore;
 
-        public GuildD(int n, Thread[] t)
+        public GuildD(int n, Thread[] t) : base()
         {
-            guild = new AlchemistD[n];
-            numberOfAlchemistsInGuild = 0;
+            guild = new Queue();
+            guildSemaphore = new Semaphore(0, 1);
 
             for (int i = 0; i < n; i++)
             {
-                int r = getRandomTimeInterval();
-                //Thread.Sleep(r);
                 AlchemistD a = new AlchemistD();
-                guild[i] = a;
+                guild.Enqueue(a);
                 t[i] = new Thread(a.collectIngredients);
-                t[i].Start();
+                //t[i].Start();
                 numberOfAlchemistsInGuild++;
             }
         }
