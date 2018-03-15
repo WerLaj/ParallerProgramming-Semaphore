@@ -9,17 +9,17 @@ namespace ParallerProgrammingSemaphore
 {
     public class Warlock
     {
-        string threadName;
         FactoryLead lfac;
         FactoryMercury mfac;
         FactorySulfur sfac;
 
         public Warlock()
         {
-            threadName = Thread.CurrentThread.Name;
             lfac = Program.leadFactory;
             mfac = Program.mercuryFactory;
             sfac = Program.sulfurFactory;
+            int time = getRandomTimeInterval();
+            Thread.Sleep(time);
         }
 
         public void curse()
@@ -30,7 +30,6 @@ namespace ParallerProgrammingSemaphore
                 fac = getRandomFactory();
 
                 int time = getRandomTimeInterval();
-                //Console.WriteLine("---Warlock " + Program.getWarlockThreadName(Thread.CurrentThread) + " sleeps for " + time + " sec");
                 Thread.Sleep(time);
 
                 fac.curseBinarySemaphore.WaitOne();
@@ -38,7 +37,6 @@ namespace ParallerProgrammingSemaphore
                 if (fac.curses == 0)
                 {
                     fac.cursesSemaphore.WaitOne();
-                    fac.n--;
                 }
                 fac.curses++;
                 Console.WriteLine("---" + fac.factoryName + " cursed by Warlock" + Program.getWarlockThreadName(Thread.CurrentThread));

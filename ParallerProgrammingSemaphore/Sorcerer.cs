@@ -9,17 +9,17 @@ namespace ParallerProgrammingSemaphore
 {
     public class Sorcerer
     {
-        string threadName;
         FactoryLead lfac;
         FactoryMercury mfac;
         FactorySulfur sfac;
 
         public Sorcerer()
         {
-            threadName = Thread.CurrentThread.Name;
             lfac = Program.leadFactory;
             mfac = Program.mercuryFactory;
             sfac = Program.sulfurFactory;
+            int time = getRandomTimeInterval();
+            Thread.Sleep(time);
         }
 
         public void removeCurses()
@@ -27,7 +27,6 @@ namespace ParallerProgrammingSemaphore
             while(true)
             {
                 int time = getRandomTimeInterval();
-                //Console.WriteLine("---Sorcerer " + Program.getSorcererThreadName(Thread.CurrentThread) + " sleeps for " + time + " sec");
                 Thread.Sleep(time);
 
                 removeCurseFromFactory(lfac);
@@ -59,7 +58,6 @@ namespace ParallerProgrammingSemaphore
                 if (f.curses == 0)
                 {
                     f.cursesSemaphore.Release();
-                    f.n++;
                     Console.WriteLine("---Sorcerer " + Program.getSorcererThreadName(Thread.CurrentThread) + " unblocked factory " + f.factoryName);
                 }
             }

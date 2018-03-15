@@ -30,8 +30,8 @@ namespace ParallerProgrammingSemaphore
         {
             for (int i = 0; i < n; i++)
             {
-                //int r = getRandomTimeInterval();
-                //Thread.Sleep(r);
+                int r = getRandomTimeInterval();
+                Thread.Sleep(r);
                 t[i].Start();
             }
         }
