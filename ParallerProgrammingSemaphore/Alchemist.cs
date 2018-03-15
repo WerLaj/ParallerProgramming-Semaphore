@@ -172,8 +172,6 @@ namespace ParallerProgrammingSemaphore
                 takeOneIngeredient(mfac.storage);
                 //waitoneAlchemistSemaphore();
                 ingredientsToCollect = 0;
-                sfac.numberOfIngredients--;
-                mfac.numberOfIngredients--;
                 Program.guildB.numberOfAlchemistsInGuild--;
                 alchemistInLab = true;
                 Program.guildB.guild.Dequeue();
@@ -258,8 +256,6 @@ namespace ParallerProgrammingSemaphore
                 takeOneIngeredient(lfac.storage);
                 //waitoneAlchemistSemaphore();
                 ingredientsToCollect = 0;
-                sfac.numberOfIngredients--;
-                lfac.numberOfIngredients--;
                 Program.guildC.numberOfAlchemistsInGuild--;
                 alchemistInLab = true;
                 Program.guildC.guild.Dequeue();
@@ -343,9 +339,6 @@ namespace ParallerProgrammingSemaphore
                 takeOneIngeredient(mfac.storage);
                 //waitoneAlchemistSemaphore();
                 ingredientsToCollect = 0;
-                sfac.numberOfIngredients--;
-                lfac.numberOfIngredients--;
-                mfac.numberOfIngredients--;
                 Program.guildD.numberOfAlchemistsInGuild--;
                 alchemistInLab = true;
                 Program.guildD.guild.Dequeue();

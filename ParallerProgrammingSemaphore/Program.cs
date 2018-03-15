@@ -40,17 +40,17 @@ public class Program
             alchemistsA = new Thread[3];
             alchemistsB = new Thread[2];
             alchemistsC = new Thread[4];
-            alchemistsD = new Thread[2];
+            alchemistsD = new Thread[4];
            
             guildA = new GuildA(3, alchemistsA);
             guildB = new GuildB(2, alchemistsB);
             guildC = new GuildC(4, alchemistsC);
-            guildD = new GuildD(2, alchemistsD);
+            guildD = new GuildD(4, alchemistsD);
 
             guildA.startAlchemists(3, alchemistsA);
             guildB.startAlchemists(2, alchemistsB);
             guildC.startAlchemists(4, alchemistsC);
-            guildD.startAlchemists(2, alchemistsD);
+            guildD.startAlchemists(4, alchemistsD);
 
             //for (int i = 0; i < 2; i++)
             //{

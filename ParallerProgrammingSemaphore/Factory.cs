@@ -40,7 +40,7 @@ namespace ParallerProgrammingSemaphore
         {
             int time = 0;
             Random rnd = new Random();
-            time = rnd.Next(1000, 3000);
+            time = rnd.Next(1000, 5000);
 
             return time;
         }
@@ -73,7 +73,7 @@ namespace ParallerProgrammingSemaphore
 
                     storage[0] = 1;
                     Console.WriteLine(factoryName + "[" + storage[0] + "," + storage[1] + "]");
-                    numberOfIngredients = 1;
+                    Program.mercuryFactory.numberOfIngredients++;
                     releaseAlchemistSemaphore();
                 }
                 else if (storage[0] == 1 && storage[1] == 0)
@@ -81,7 +81,7 @@ namespace ParallerProgrammingSemaphore
 
                     storage[1] = 1;
                     Console.WriteLine(factoryName + "[" + storage[0] + "," + storage[1] + "]");
-                    numberOfIngredients = 2;
+                    Program.mercuryFactory.numberOfIngredients++;
                     releaseAlchemistSemaphore();
                 }
 
@@ -251,7 +251,7 @@ namespace ParallerProgrammingSemaphore
                 {
                     storage[0] = 1;
                     Console.WriteLine(factoryName + "[" + storage[0] + "," + storage[1] + "]");
-                    numberOfIngredients = 1;
+                    Program.leadFactory.numberOfIngredients++;
                     releaseAlchemistSemaphore();
 
                 }
@@ -260,7 +260,7 @@ namespace ParallerProgrammingSemaphore
 
                     storage[1] = 1;
                     Console.WriteLine(factoryName + "[" + storage[0] + "," + storage[1] + "]");
-                    numberOfIngredients = 2;
+                    Program.leadFactory.numberOfIngredients++;
                     releaseAlchemistSemaphore();
                 }
                 Program.alchemistChoice.Release();
@@ -272,7 +272,7 @@ namespace ParallerProgrammingSemaphore
 
         public void releaseAlchemistSemaphore()
         {
-            if (Program.guildD.numberOfAlchemistsInGuild - 1 >= 0)
+            if (Program.guildD.numberOfAlchemistsInGuild > 0)
             {
                // AlchemistD d = (AlchemistD)Program.guildD.guild.Peek();
                 if (Program.leadFactory.numberOfIngredients > 0)
@@ -295,7 +295,7 @@ namespace ParallerProgrammingSemaphore
 
                 if (n % 2 == 0)
                 {
-                    if (Program.guildA.numberOfAlchemistsInGuild - 1 >= 0)
+                    if (Program.guildA.numberOfAlchemistsInGuild > 0)
                     {
                         //AlchemistA a = (AlchemistA)Program.guildA.guild.Peek();
                         if (Program.leadFactory.numberOfIngredients > 0)
@@ -312,7 +312,7 @@ namespace ParallerProgrammingSemaphore
                     }
                     else
                     {
-                        if (Program.guildC.numberOfAlchemistsInGuild - 1 >= 0)
+                        if (Program.guildC.numberOfAlchemistsInGuild > 0)
                         {
                             //AlchemistC b = (AlchemistC)Program.guildC.guild.Peek();
                             if (Program.leadFactory.numberOfIngredients > 0)
@@ -331,7 +331,7 @@ namespace ParallerProgrammingSemaphore
                 }
                 else
                 {
-                    if (Program.guildC.numberOfAlchemistsInGuild - 1 >= 0)
+                    if (Program.guildC.numberOfAlchemistsInGuild > 0)
                     {
                         //AlchemistC b = (AlchemistC)Program.guildC.guild.Peek();
                         if (Program.leadFactory.numberOfIngredients > 0)
@@ -348,7 +348,7 @@ namespace ParallerProgrammingSemaphore
                     }
                     else
                     {
-                        if (Program.guildA.numberOfAlchemistsInGuild - 1 >= 0)
+                        if (Program.guildA.numberOfAlchemistsInGuild > 0)
                         {
                            // AlchemistA a = (AlchemistA)Program.guildA.guild.Peek();
                             if (Program.leadFactory.numberOfIngredients > 0)
@@ -429,7 +429,7 @@ namespace ParallerProgrammingSemaphore
 
                     storage[0] = 1;
                     Console.WriteLine(factoryName + "[" + storage[0] + "," + storage[1] + "]");
-                    numberOfIngredients = 1;
+                    Program.sulfurFactory.numberOfIngredients++;
                     releaseAlchemistSemaphore();
 
                 }
@@ -438,7 +438,7 @@ namespace ParallerProgrammingSemaphore
 
                     storage[1] = 1;
                     Console.WriteLine(factoryName + "[" + storage[0] + "," + storage[1] + "]");
-                    numberOfIngredients = 2;
+                    Program.sulfurFactory.numberOfIngredients++;
                     releaseAlchemistSemaphore();
                 }
                 Program.alchemistChoice.Release();
