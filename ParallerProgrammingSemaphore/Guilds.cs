@@ -52,7 +52,6 @@ namespace ParallerProgrammingSemaphore
                 AlchemistA a = new AlchemistA();
                 guild.Enqueue(a);
                 t[i] = new Thread(a.collectIngredients);
-                //t[i].Start();
                 numberOfAlchemistsInGuild++;
             }
         }
@@ -73,7 +72,6 @@ namespace ParallerProgrammingSemaphore
                 AlchemistB a = new AlchemistB();
                 guild.Enqueue(a);
                 t[i] = new Thread(a.collectIngredients);
-                //t[i].Start();
                 numberOfAlchemistsInGuild++;
             }
         }
@@ -94,7 +92,6 @@ namespace ParallerProgrammingSemaphore
                 AlchemistC a = new AlchemistC();
                 guild.Enqueue(a);
                 t[i] = new Thread(a.collectIngredients);
-                //t[i].Start();
                 numberOfAlchemistsInGuild++;
             }
         }
@@ -115,7 +112,6 @@ namespace ParallerProgrammingSemaphore
                 AlchemistD a = new AlchemistD();
                 guild.Enqueue(a);
                 t[i] = new Thread(a.collectIngredients);
-                //t[i].Start();
                 numberOfAlchemistsInGuild++;
             }
         }

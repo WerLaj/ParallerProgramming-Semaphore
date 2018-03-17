@@ -39,7 +39,7 @@ namespace ParallerProgrammingSemaphore
                     fac.cursesSemaphore.WaitOne();
                 }
                 fac.curses++;
-                Console.WriteLine("---" + fac.factoryName + " cursed by Warlock" + Program.getWarlockThreadName(Thread.CurrentThread));
+                Console.WriteLine(fac.factoryName + " cursed by Warlock" + Program.getWarlockThreadName(Thread.CurrentThread));
 
                 fac.curseBinarySemaphore.Release();
             }

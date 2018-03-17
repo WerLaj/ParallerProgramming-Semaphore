@@ -54,11 +54,11 @@ namespace ParallerProgrammingSemaphore
             if (f.curses > 0)
             {
                 f.curses--;
-                Console.WriteLine("---Sorcerer " + Program.getSorcererThreadName(Thread.CurrentThread) + " removes curse from " + f.factoryName);
+                Console.WriteLine("Sorcerer " + Program.getSorcererThreadName(Thread.CurrentThread) + " removes curse from " + f.factoryName);
                 if (f.curses == 0)
                 {
                     f.cursesSemaphore.Release();
-                    Console.WriteLine("---Sorcerer " + Program.getSorcererThreadName(Thread.CurrentThread) + " unblocked factory " + f.factoryName);
+                    Console.WriteLine("Sorcerer " + Program.getSorcererThreadName(Thread.CurrentThread) + " unblocked factory " + f.factoryName);
                 }
             }
 

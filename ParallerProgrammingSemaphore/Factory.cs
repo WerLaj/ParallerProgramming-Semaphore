@@ -271,7 +271,7 @@ namespace ParallerProgrammingSemaphore
                 storageSemaphore.WaitOne();
 
                 int time = getRandomTimeInterval();
-                Thread.Sleep(time); //kosztowna operacja w semaforze
+                Thread.Sleep(time); 
 
                 cursesSemaphore.WaitOne();
 

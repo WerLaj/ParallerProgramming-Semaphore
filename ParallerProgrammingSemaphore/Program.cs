@@ -30,9 +30,6 @@ public class Program
         public static GuildC guildC;
         public static GuildD guildD;
         public static Semaphore alchemistChoice = new Semaphore(1, 1);
-        //public static int lead = 0;
-        //public static int mercury = 0;
-        //public static int sulfur = 0;
 
         static void Main(string[] args)
         {
@@ -50,34 +47,7 @@ public class Program
             guildA.startAlchemists(3, alchemistsA);
             guildB.startAlchemists(2, alchemistsB);
             guildC.startAlchemists(4, alchemistsC);
-            guildD.startAlchemists(4, alchemistsD);
-
-            //for (int i = 0; i < 2; i++)
-            //{
-            //    AlchemistA a = new AlchemistA();
-            //    guildA.guild[i] = a;
-            //    guildA.numberOfAlchemistsInGuild++;
-            //    alchemistsA[i] = new Thread(a.collectIngredients);
-            //    alchemistsA[i].Start();
-
-            //    AlchemistB b = new AlchemistB();
-            //    guildB.guild[i] = b;
-            //    guildB.numberOfAlchemistsInGuild++;
-            //    alchemistsB[i] = new Thread(b.collectIngredients);
-            //    alchemistsB[i].Start();
-
-            //    AlchemistC c = new AlchemistC();
-            //    guildC.guild[i] = c;
-            //    guildC.numberOfAlchemistsInGuild++;
-            //    alchemistsC[i] = new Thread(c.collectIngredients);
-            //    alchemistsC[i].Start();
-
-            //    AlchemistD d = new AlchemistD();
-            //    guildD.guild[i] = d;
-            //    guildD.numberOfAlchemistsInGuild++;
-            //    alchemistsD[i] = new Thread(d.collectIngredients);
-            //    alchemistsD[i].Start();
-            //}
+            guildD.startAlchemists(4, alchemistsD); 
 
             lfacThread = new Thread(leadFactory.produce);
             lfacThread.Start();
